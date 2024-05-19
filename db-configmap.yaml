@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+  POSTGRES_DB: synapse
+  POSTGRES_USER: synapse
+  POSTGRES_PASSWORD: SynapeSecretPassword
+  POSTGRES_INITDB_ARGS: --encoding=UTF-8 --lc-collate=C --lc-ctype=C

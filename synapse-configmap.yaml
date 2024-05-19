@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: synapse-configmap
+data:
+  SYNAPSE_SERVER_NAME: "synapsedv.com"
+  SYNAPSE_REPORT_STATS: "yes"

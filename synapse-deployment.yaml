@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synapse-deployment
+spec:
+  replicas: 1
+  template:
+    metadata: 
+      name: synapse
+      labels:
+        app: synapse
+    spec:
+      containers:
+        - name: synapse-container
+          image: matrixdotorg/synapse:latest
+          resources:
+            requests:
+              cpu: 10m
+          # args: ["generate"]
+          # env:
+          #   - name: SYNAPSE_SERVER_NAME
+          #     value: "synapsedv.com"
+          #   - name: SYNAPSE_REPORT_STATS
+          #     value: "yes"
+          ports:
+            - containerPort: 8008
+          # envFrom:
+          #   - configMapRef:
+          #       name: synapse-configmap
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: synapse-pvc
+  selector:
+    matchLabels: 
+      app: synapse
+  # serviceName: synapse-service

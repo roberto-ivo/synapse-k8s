@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homeserver
+  labels:
+    app: synapse
+data:
+  homeserver.yaml: |
+    # Configuration file for Synapse.
+    # By: Josafa
+    # This is a YAML file: see [1] for a quick introduction. Note in particular
+    # that *indentation is important*: all the elements of a list or dictionary
+    # should have the same indentation.
+    #
+    # [1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+    #
+    # For more information on how to configure Synapse, including a complete accounting of
+    # each option, go to docs/usage/configuration/config_documentation.md or
+    # https://element-hq.github.io/synapse/latest/usage/configuration/config_documentation.html
+    server_name: "synapsedv.com"
+    pid_file: /data/homeserver.pid
+    listeners:
+      - port: 8008
+        tls: false
+        type: http
+        x_forwarded: true
+        resources:
+          - names: [client, federation]
+            compress: false
+    database:
+      name: sqlite3
+      args:
+        database: /data/homeserver.db
+    log_config: "/data/synapsedv.com.log.config"
+    media_store_path: /data/media_store
+    registration_shared_secret: "yme5-lg;Eg4KDv^oL4MBz^qXPp:7gB@gT*EVawq4c96h10pO~5"
+    report_stats: true
+    macaroon_secret_key: "vFCmIn+VXe1d6jA89Fim,g6toaapTXvR_uNX-PfIYab,G8.FEX"
+    form_secret: "2&8HN-0WuPt62S7y4;vrXCB0LS~q8-RgABVH3k4_3Mwk5S.2j~"
+    signing_key_path: "/data/synapsedv.com.signing.key"
+    trusted_key_servers:
+      - server_name: "matrix.org"

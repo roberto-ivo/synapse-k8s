@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: signingkey
+  labels:
+    app: synapse
+data:
+  synapsedv.com.signing.key: |
+    ed25519 a_xzEO QrVaG7nt0oxQHTa3FfzuT0opkrq+Ynwzu5YSPX3YSPE

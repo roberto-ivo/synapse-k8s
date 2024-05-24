@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synapse-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: synapse
+      labels:
+        app: synapse
+    spec:
+      containers:
+      - name: synapse-container
+        image: matrixdotorg/synapse:latest
+        resources:
+          limits:
+            cpu: 500m
+            memory: '1Gi'
+        # args: ["generate"]
+        # env:
+        #   - name: SYNAPSE_SERVER_NAME
+        #     value: "synapsedv.com"
+        #   - name: SYNAPSE_REPORT_STATS
+        #     value: "yes"
+        ports:
+        - containerPort: 8008
+        # envFrom:
+        #   - configMapRef:
+        #       name: synapse-configmap
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: homeserver
+          mountPath: /data/homeserver.yaml
+          subPath: homeserver.yaml
+        - name: logconfig
+          mountPath: /data/synapsedv.com.log.config
+          subPath: synapsedv.com.log.config
+        - name: signingkey
+          mountPath: /data/synapsedv.com.signing.key
+          subPath: synapsedv.com.signing.key
+      volumes:
+      - name: homeserver
+        configMap:
+          name: homeserver
+      - name: logconfig
+        configMap:
+          name: logconfig
+      - name: signingkey
+        configMap:
+          name: signingkey
+      - name: data
+        persistentVolumeClaim:
+          claimName: synapse-pvc
+  selector:
+    matchLabels:
+      app: synapse
+  # serviceName: synapse-service

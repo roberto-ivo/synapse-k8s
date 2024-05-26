@@ -28,9 +28,16 @@ data:
           - names: [client, federation]
             compress: false
     database:
-      name: sqlite3
+      name: psycopg2
+      txn_limit: 10000
       args:
-        database: /data/homeserver.db
+        user: synapse
+        password: SynapeSecretPassword
+        database: synapse
+        host: db-synapse-service
+        port: 5432
+        cp_min: 5
+        cp_max: 10
     log_config: "/data/synapsedv.com.log.config"
     media_store_path: /data/media_store
     registration_shared_secret: "yme5-lg;Eg4KDv^oL4MBz^qXPp:7gB@gT*EVawq4c96h10pO~5"

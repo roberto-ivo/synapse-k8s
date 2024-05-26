@@ -9,6 +9,6 @@ spec:
     port: 8008
     protocol: TCP
     targetPort: 8008
-    nodePort: 30080
+    # nodePort: 30080
   selector:
     app: synapse

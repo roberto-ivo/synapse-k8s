@@ -7,7 +7,6 @@ metadata:
 data:
   homeserver.yaml: |
     # Configuration file for Synapse.
-    # By: Josafa
     # This is a YAML file: see [1] for a quick introduction. Note in particular
     # that *indentation is important*: all the elements of a list or dictionary
     # should have the same indentation.
@@ -40,10 +39,19 @@ data:
         cp_max: 10
     log_config: "/data/synapsedv.com.log.config"
     media_store_path: /data/media_store
-    registration_shared_secret: "yme5-lg;Eg4KDv^oL4MBz^qXPp:7gB@gT*EVawq4c96h10pO~5"
+    ## Registration ##
+    # Enable registration for new users.
+    enable_registration_without_verification: True
+
+    # If set, allows registration by anyone who also has the shared
+    # secret, even if registration is otherwise disabled.
+    registration_shared_secret: "J#_C.ouEJL&SO2qnP4djPItKgH+WyH=A,DuW.k1fI=lMg~nHa@"
+    # enable_registration_without_verification: True
     report_stats: true
     macaroon_secret_key: "vFCmIn+VXe1d6jA89Fim,g6toaapTXvR_uNX-PfIYab,G8.FEX"
     form_secret: "2&8HN-0WuPt62S7y4;vrXCB0LS~q8-RgABVH3k4_3Mwk5S.2j~"
     signing_key_path: "/data/synapsedv.com.signing.key"
+    # ratelimiting:
+    #   enabled: false
     trusted_key_servers:
       - server_name: "matrix.org"

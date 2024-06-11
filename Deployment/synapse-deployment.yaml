@@ -13,10 +13,16 @@ spec:
       containers:
       - name: synapse-container
         image: matrixdotorg/synapse:latest
+        readinessProbe:
+          httpGet: 
+            path: /health
+            port: 8008
+          initialDelaySeconds: 15
+          periodSeconds: 10
         resources:
           limits:
-            cpu: 500m
-            memory: '1Gi'
+            cpu: 50m
+            # memory: '1Gi'
         # args: ["generate"]
         # env:
         #   - name: SYNAPSE_SERVER_NAME

@@ -21,8 +21,8 @@ spec:
           periodSeconds: 10
         resources:
           limits:
-            cpu: 50m
-            # memory: '1Gi'
+            cpu: 500m
+            memory: '1Gi'
         # args: ["generate"]
         # env:
         #   - name: SYNAPSE_SERVER_NAME

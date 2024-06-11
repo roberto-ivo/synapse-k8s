@@ -33,7 +33,7 @@ data:
         user: synapse
         password: SynapeSecretPassword
         database: synapse
-        host: db-synapse-service
+        host: postgres-service
         port: 5432
         cp_min: 5
         cp_max: 10

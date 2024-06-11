@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: db-configmap
+  name: postgres-configmap
 data:
   POSTGRES_DB: synapse
   POSTGRES_USER: synapse

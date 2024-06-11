@@ -1,12 +1,16 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: synapse-ingress
-  labels:
-    name: synapse
+  name: nginx-synapse-ingress
+  annotations:
+    # Define o tamanho máximo do arquivo que pode ser enviado.
+    # "max_upload_size" também precisa ser ajustado no homeserver.yaml.
+    nginx.ingress.kubernetes.io/proxy-body-size: 100M
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx-synapse
   rules:
-  - host: matrix.synapsedv.com
+  - host: matrix.example.com
     http:
       paths:
       - pathType: Prefix
@@ -16,3 +20,7 @@ spec:
             name: synapse-service
             port:
               number: 8008
+  tls:
+  - hosts:
+    - matrix.example.com
+    secretName: example.com

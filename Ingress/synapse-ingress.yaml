@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: matrix.techsmart.space
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx-service
-            port:
-              number: 80
+    - host: matrix.techsmart.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: synapse-service
+                port:
+                  number: 8008
   tls:
-  - hosts:
-    - matrix.techsmart.space
-    secretName: techsmart.space
+    - hosts:
+        - matrix.techsmart.space
+      secretName: techsmart.space

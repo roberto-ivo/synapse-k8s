@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: synapse-delegation-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, HEAD, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+spec:
+  rules:
+    - host: techsmart.space
+      http:
+        paths:
+          - path: /.well-known/matrix/
+            pathType: Prefix
+            backend:
+              service:
+                name: delegation-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - techsmart.space
+      secretName: techsmart.space

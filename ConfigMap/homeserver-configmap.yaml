@@ -55,3 +55,12 @@ data:
     #   enabled: false
     trusted_key_servers:
       - server_name: "matrix.org"
+
+    ## Turn ##
+    # The public URIs of the TURN server to give to clients
+    turn_uris: [ "turn:turn.dv.techsmart.space?transport=udp", "turn:turn.dv.techsmart.space?transport=tcp", "turns:turn.dv.techsmart.space?transport=udp", "turns:turn.dv.techsmart.space?transport=tcp" ]
+    # The shared secret used to compute passwords for the TURN server
+    turn_shared_secret: "25euxnU6kCkrskBLecCUItQKEGMlmxSwNJ7LoR9gqGiFfCyD3D0NXEidU0h26yFC"
+    # How long generated TURN credentials last
+    turn_user_lifetime: 86400000
+    turn_allow_guests: true

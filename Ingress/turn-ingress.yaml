@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: turn-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+    - host: turn.dv.techsmart.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: turn-service
+                port:
+                  number: 5349
+  tls:
+    - hosts:
+        - turn.dv.techsmart.space
+      secretName: turn-tls

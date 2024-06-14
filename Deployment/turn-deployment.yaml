@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: turn-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: turn
+  template:
+    metadata:
+      labels:
+        app: turn
+    spec:
+      containers:
+        - name: coturn
+          image: coturn/coturn
+          ports:
+            - containerPort: 5349
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/coturn/turnserver.conf
+              subPath: turnserver.conf
+            # - name: certs
+            #   mountPath: /etc/letsencrypt
+      volumes:
+        - name: config-volume
+          configMap:
+            name: turn-config
+        # - name: certs
+        #   hostPath:
+        #     path: /etc/letsencrypt

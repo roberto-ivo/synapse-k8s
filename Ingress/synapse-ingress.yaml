@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: matrix.techsmart.space
+    - host: matrix.dv.techsmart.space
       http:
         paths:
           - path: /
@@ -20,5 +20,5 @@ spec:
                   number: 8008
   tls:
     - hosts:
-        - matrix.techsmart.space
-      secretName: techsmart.space
+        - matrix.dv.techsmart.space
+      secretName: dv.techsmart.space

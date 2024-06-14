@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-headers: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
 spec:
   rules:
-    - host: techsmart.space
+    - host: dv.techsmart.space
       http:
         paths:
           - path: /.well-known/matrix/
@@ -21,5 +21,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - techsmart.space
-      secretName: techsmart.space
+        - dv.techsmart.space
+      secretName: dv.techsmart.space

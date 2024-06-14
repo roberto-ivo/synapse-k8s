@@ -11,10 +11,10 @@ data:
       }
       location /.well-known/matrix/server {
         default_type application/json;
-        return 200 '{"m.server": "matrix.techsmart.space:443"}';
+        return 200 '{"m.server": "matrix.dv.techsmart.space:443"}';
       }
       location /.well-known/matrix/client {
         default_type application/json;
-        return 200 '{"m.homeserver": { "base_url": "https://matrix.techsmart.space" }}';
+        return 200 '{"m.homeserver": { "base_url": "https://matrix.dv.techsmart.space" }}';
       }
     }
